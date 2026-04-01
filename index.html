@@ -3,36 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Funstudying｜大世界地圖 房間+金幣+換裝</title>
+<title>Funstudying｜地圖房間+金幣+可見換衣角色</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
   font-family:"微軟雅黑",sans-serif;
-  background:#eef7ff;
   overflow:hidden;
 }
 
-/* 頁面容器 */
+/* 角色固定在左上角永遠顯示 */
+.myAvatarBox{
+  position:fixed;
+  top:70px;
+  left:15px;
+  z-index:999;
+}
+.baseAvatar{
+  width:50px;height:60px;
+  position:relative;
+}
+/* 基礎頭身 */
+.avaBody{
+  width:46px;height:52px;
+  background:#ffc8d2;
+  border-radius:50% 50% 45% 45%;
+  position:absolute;bottom:0;left:2px;
+}
+.avaHair{
+  width:42px;height:18px;
+  background:#222;
+  border-radius:50%;
+  position:absolute;top:-6px;left:4px;
+}
+.eyeL,.eyeR{
+  width:5px;height:6px;
+  background:#111;
+  border-radius:50%;
+  position:absolute;top:22px;
+}
+.eyeL{left:12px;}
+.eyeR{right:12px;}
+.blushL,.blushR{
+  width:7px;height:4px;
+  background:#ffb8c8;
+  border-radius:50%;
+  position:absolute;top:30px;opacity:0.6;
+}
+.blushL{left:6px;}
+.blushR{right:6px;}
+
+/* 衣服層（覆蓋在身體上） */
+.clothLayer{
+  width:46px;height:32px;
+  position:absolute;bottom:0;left:2px;
+  border-radius:0 0 45% 45%;
+}
+.cloth0{display:none;}
+.cloth1{background:#ff99bb;}
+.cloth2{background:#88b8ff;}
+.cloth3{background:#ffcc88;}
+
+/* 頁面切換 */
 .page{display:none;width:100vw;height:100vh;padding:20px;}
 .active{display:block;}
-
-/* 大地圖頁面 */
-#mapPage{
-  background:#bde2bc;
-  text-align:center;
-}
-.map-title{font-size:32px;margin:30px 0;color:#226622;}
-.room-btn{
-  width:180px;height:140px;
-  margin:20px;
-  border:none;border-radius:20px;
-  font-size:20px;color:white;
-  cursor:pointer;
-}
-.study-room{background:#4488cc;}
-.rest-room{background:#77bb77;}
-.chat-room{background:#cc77aa;}
-.shop-room{background:#ffbb44;color:#333;}
 
 /* 頂部金幣欄 */
 .top-bar{
@@ -47,6 +80,18 @@ body{
   background:#666;color:white;cursor:pointer;
 }
 
+/* 大地圖 */
+#mapPage{background:#bde2bc;text-align:center;padding-top:80px;}
+.map-title{font-size:32px;margin:30px 0;color:#226622;}
+.room-btn{
+  width:180px;height:140px;margin:20px;border:none;border-radius:20px;
+  font-size:20px;color:white;cursor:pointer;
+}
+.study-room{background:#4488cc;}
+.rest-room{background:#77bb77;}
+.chat-room{background:#cc77aa;}
+.shop-room{background:#ffbb44;color:#333;}
+
 /* 學習房 */
 #studyPage{background:#d7e9f5;text-align:center;padding-top:80px;}
 .timer-box{font-size:60px;margin:30px;}
@@ -57,68 +102,85 @@ body{
 
 /* 聊天房 */
 #chatPage{background:#f5e9f8;text-align:center;padding-top:80px;}
+textarea{width:80%;height:180px;margin-top:30px;padding:15px;border-radius:12px;border:1px solid #ccc;}
 
-/* 商城換裝 */
+/* 商城 */
 #shopPage{background:#fff8e5;text-align:center;padding-top:80px;}
 .cloth-item{
-  width:120px;padding:15px;margin:10px;border-radius:12px;
+  width:140px;padding:18px;margin:12px;border-radius:12px;
   background:#ffe8b0;display:inline-block;cursor:pointer;
 }
 </style>
 </head>
 <body>
 
-<!-- 頂部金幣列 -->
+<!-- 左上角永遠顯示你的角色+衣服 -->
+<div class="myAvatarBox">
+  <div class="baseAvatar">
+    <div class="avaHair"></div>
+    <div class="avaBody">
+      <div class="eyeL"></div>
+      <div class="eyeR"></div>
+      <div class="blushL"></div>
+      <div class="blushR"></div>
+    </div>
+    <!-- 衣服層 會隨購買切換 class -->
+    <div class="clothLayer cloth0" id="nowCloth"></div>
+  </div>
+</div>
+
+<!-- 頂部金幣 -->
 <div class="top-bar">
   <button class="back-btn" onclick="goMap()">返回地圖</button>
-  &nbsp;&nbsp;💰 你的金幣：<span id="coinNum">0</span>
+  &nbsp;&nbsp;💰 金幣：<span id="coinNum">0</span>
 </div>
 
-<!-- 1.大世界地圖 -->
+<!-- 地圖 -->
 <div id="mapPage" class="page active">
-  <div class="map-title">🌍 歡迎來到 Funstudying 大世界</div>
-  <br>
-  <button class="room-btn study-room" onclick="goPage('studyPage')">📚 專業學習房</button>
-  <button class="room-btn rest-room" onclick="goPage('restPage')">☁️ 放鬆休息室</button>
-  <br>
-  <button class="room-btn chat-room" onclick="goPage('chatPage')">💬 好友娛樂聊天室</button>
-  <button class="room-btn shop-room" onclick="goPage('shopPage')">👗 換裝金幣商城</button>
+  <div class="map-title">🌍 Funstudying 大世界地圖</div>
+  <button class="room-btn study-room" onclick="goPage('studyPage')">📚 學習房</button>
+  <button class="room-btn rest-room" onclick="goPage('restPage')">☁️ 休息室</button><br>
+  <button class="room-btn chat-room" onclick="goPage('chatPage')">💬 聊天娛樂房</button>
+  <button class="room-btn shop-room" onclick="goPage('shopPage')">👗 換衣商城</button>
 </div>
 
-<!-- 2.學習房 -->
+<!-- 學習房 -->
 <div id="studyPage" class="page">
-  <h1>📖 專心學習計時室</h1>
+  <h1>📖 專心計時學習</h1>
   <div class="timer-box" id="timer">25:00</div>
-  <button class="ctrl-btn" onclick="startTimer()">開始專心</button>
+  <button class="ctrl-btn" onclick="startTimer()">開始</button>
   <button class="ctrl-btn" onclick="pauseTimer()">暫停</button>
-  <button class="ctrl-btn" onclick="endStudy()">完成領金幣+50</button>
+  <button class="ctrl-btn" onclick="endStudy()">完成 +50金幣</button>
 </div>
 
-<!-- 3.休息室 -->
+<!-- 休息室 -->
 <div id="restPage" class="page">
-  <h1>☁️ 輕鬆休息空間</h1>
-  <p style="margin-top:30px;font-size:20px;">這裡可以放鬆心情、緩和眼睛</p>
+  <h1>☁️ 輕鬆休息區</h1>
+  <p style="margin-top:40px;font-size:20px;">放鬆眼睛、調整心情～</p>
 </div>
 
-<!-- 4.聊天娛樂房 -->
+<!-- 聊天房 -->
 <div id="chatPage" class="page">
-  <h1>💬 好友聊天娛樂房</h1>
-  <textarea style="width:80%;height:180px;margin-top:30px;padding:15px;border-radius:12px;" placeholder="在這裡和朋友聊天打氣～"></textarea>
+  <h1>💬 好友聊天房</h1>
+  <textarea placeholder="和朋友互相打氣留言..."></textarea>
 </div>
 
-<!-- 5.換裝商城 -->
+<!-- 換衣商城 -->
 <div id="shopPage" class="page">
-  <h1>👗 金幣換裝商城</h1>
-  <div class="cloth-item" onclick="buyCloth(100)">粉紅校服 💰100</div>
-  <div class="cloth-item" onclick="buyCloth(150)">藍色運動服 💰150</div>
-  <div class="cloth-item" onclick="buyCloth(200)">可愛洋裝 💰200</div>
-  <p style="margin-top:30px;">累積學習金幣，解鎖更多造型！</p>
+  <h1>👗 服裝商城（買完立刻看角色變化）</h1>
+  <div class="cloth-item" onclick="buyCloth(100,1)">粉紅校服 💰100</div>
+  <div class="cloth-item" onclick="buyCloth(150,2)">藍色運動服 💰150</div>
+  <div class="cloth-item" onclick="buyCloth(200,3)">暖黃可愛裙 💰200</div>
+  <p style="margin-top:30px;">左上方小人會立刻換上新衣服！</p>
 </div>
 
 <script>
-// 本地儲存金幣
+// 讀取儲存
 let coins = parseInt(localStorage.getItem("myCoin")) || 0;
+let clothId = parseInt(localStorage.getItem("myCloth")) || 0;
+
 document.getElementById("coinNum").innerText = coins;
+document.getElementById("nowCloth").className = "clothLayer cloth"+clothId;
 
 // 頁面切換
 function goPage(id){
@@ -131,38 +193,38 @@ function goMap(){goPage("mapPage");}
 let time = 25*60;
 let run = false;
 let timer;
-function updateT(){
-  let m = Math.floor(time/60),s=time%60;
+function upT(){
+  let m=Math.floor(time/60),s=time%60;
   document.getElementById("timer").innerText=(m<10?"0"+m:m)+":"+(s<10?"0"+s:s);
 }
-function startTimer(){
-  if(run)return;run=true;
-  timer=setInterval(()=>{if(time>0)time--;updateT();},1000);
-}
-function pauseTimer(){run=false;clearInterval(timer);}
+function startTimer(){if(run)return;run=1;timer=setInterval(()=>time>0&&time--,1000);upT();}
+function pauseTimer(){run=0;clearInterval(timer);}
 
-// 學習完成領金幣
+// 賺金幣
 function endStudy(){
   pauseTimer();
-  coins += 50;
+  coins +=50;
   localStorage.setItem("myCoin",coins);
   document.getElementById("coinNum").innerText=coins;
-  alert("學習完成！獲得 50 金幣✨");
-  time=25*60;updateT();
+  alert("學習完成！+50金幣 ✨");
+  time=25*60;upT();
 }
 
-// 買衣服扣金幣
-function buyCloth(price){
+// 買衣服＋立刻換角色外觀
+function buyCloth(price,cid){
   if(coins>=price){
     coins -= price;
+    clothId = cid;
     localStorage.setItem("myCoin",coins);
+    localStorage.setItem("myCloth",clothId);
     document.getElementById("coinNum").innerText=coins;
-    alert("購買成功！已換上新衣服～");
+    document.getElementById("nowCloth").className="clothLayer cloth"+cid;
+    alert("購買成功！左上方小人已換新衣～");
   }else{
-    alert("金幣不足！快去學習掙錢💪");
+    alert("金幣不足，快去學習賺錢！");
   }
 }
-updateT();
+upT();
 </script>
 
 </body>
