@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Funstudying｜精緻卡通純代碼自修室</title>
+<title>Funstudying｜精美随机男女卡通教室</title>
 <style>
 * {margin:0;padding:0;box-sizing:border-box;}
 body{
@@ -20,7 +20,7 @@ h1{
 }
 .tip{color:#666;margin-bottom:25px;}
 
-/* 教室整体 纯代码高级质感 */
+/* 教室高级质感纯代码 */
 .classroom{
   width:96%;
   max-width:950px;
@@ -45,13 +45,12 @@ h1{
   position:relative;
 }
 .blackboard::after{
-  content:"📖 今日專心學習";
+  content:"📖 今日专心学习｜一起自律进步";
   color:#A2E8A2;
   font-size:18px;
   line-height:80px;
 }
 
-/* 课桌区域布局 */
 .desk-wrap{
   position:absolute;
   width:100%;
@@ -64,7 +63,7 @@ h1{
   margin-bottom:26px;
 }
 
-/* 精致课桌样式 */
+/* 精致课桌 */
 .desk{
   width:72px;
   height:52px;
@@ -80,7 +79,7 @@ h1{
   box-shadow:0 6px 12px #00000030;
 }
 
-/* ==========超精致CSS卡通人物========== */
+/* 角色容器 */
 .avatar{
   position:absolute;
   bottom:8px;
@@ -90,22 +89,38 @@ h1{
   height:42px;
   display:none;
 }
-/* 身体 */
-.ava-body{
+
+/* 女生角色 */
+.girl .ava-body{
   width:34px;height:38px;
   background:linear-gradient(#FFC8D2,#FFA8BC);
   border-radius:52% 52% 45% 45%;
   position:relative;
 }
-/* 圆头发型 */
-.ava-hair{
+.girl .ava-hair{
   width:32px;height:16px;
   background:#222;
   border-radius:50%;
   position:absolute;
   top:-6px;left:1px;
 }
-/* 可爱大眼睛 */
+
+/* 男生角色 */
+.boy .ava-body{
+  width:34px;height:38px;
+  background:linear-gradient(#C8D8FF,#98B8FF);
+  border-radius:52% 52% 45% 45%;
+  position:relative;
+}
+.boy .ava-hair{
+  width:30px;height:14px;
+  background:#111;
+  border-radius:40% 40% 0 0;
+  position:absolute;
+  top:-5px;left:2px;
+}
+
+/* 通用五官 */
 .eye1,.eye2{
   width:5px;height:6px;
   background:#111;
@@ -115,7 +130,6 @@ h1{
 }
 .eye1{left:8px;}
 .eye2{right:8px;}
-/* 腮红萌感 */
 .blush1,.blush2{
   width:6px;height:4px;
   background:#FFB8C8;
@@ -126,18 +140,16 @@ h1{
 .blush1{left:4px;}
 .blush2{right:4px;}
 
-/* 入场动画顺滑 */
+/* 动画 */
 @keyframes sitIn{
   0%{opacity:0;transform:translateX(-50%) translateY(-30px) scale(0.8);}
   100%{opacity:1;transform:translateX(-50%) translateY(0) scale(1);}
 }
-/* 下课离场优雅动画 */
 @keyframes leaveOut{
   0%{opacity:1;transform:translateX(-50%) scale(1);}
   100%{opacity:0;transform:translateX(-50%) translateY(-40px) scale(0.7);}
 }
 
-/* 下课按钮美化 */
 .btn-leave{
   margin-top:28px;
   padding:14px 36px;
@@ -155,84 +167,74 @@ h1{
 </head>
 <body>
 
-<h1>🍭 Funstudying 精緻卡通自修教室</h1>
-<p class="tip">全程式繪製｜點擊座位入座｜超萌角色｜多人免費同步</p>
+<h1>🍭 Funstudying 随机男女卡通自修教室</h1>
+<p class="tip">纯代码绘制｜点座位随机男/女角色｜多人免费联机</p>
 
 <div class="classroom">
-  <div class="blackboard"></div>
+<div class="blackboard"></div>
 
-  <div class="desk-wrap">
-    <!-- 第一排 -->
-    <div class="row">
-      <div class="desk" onclick="joinSeat(this)">
-        <div class="avatar">
-          <div class="ava-body">
-            <div class="ava-hair"></div>
-            <div class="eye1"></div>
-            <div class="eye2"></div>
-            <div class="blush1"></div>
-            <div class="blush2"></div>
-          </div>
-        </div>
-      </div>
-      <div class="desk" onclick="joinSeat(this)">
-        <div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div>
-      </div>
-      <div class="desk" onclick="joinSeat(this)">
-        <div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div>
-      </div>
-      <div class="desk" onclick="joinSeat(this)">
-        <div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div>
-      </div>
-      <div class="desk" onclick="joinSeat(this)">
-        <div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div>
-      </div>
-    </div>
-    <!-- 第二排 -->
-    <div class="row">
-      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-    </div>
-    <!-- 第三排 -->
-    <div class="row">
-      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-    </div>
-    <!-- 第四排超多座位 -->
-    <div class="row">
-      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-    </div>
-  </div>
+<div class="desk-wrap">
+<!-- 第1排 -->
+<div class="row">
+<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+</div>
+<!-- 第2排 -->
+<div class="row">
+<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+</div>
+<!-- 第3排 -->
+<div class="row">
+<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+</div>
+<!-- 第4排 -->
+<div class="row">
+<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+</div>
+</div>
 </div>
 
-<button class="btn-leave" onclick="allFinish()">🔔 全班下課收桌離開</button>
+<button class="btn-leave" onclick="allFinish()">🔔 全班下课收桌离开</button>
 
 <script>
-// 点击入座精致动画
-function joinSeat(dom){
-  let ava = dom.querySelector(".avatar");
+// 随机男女角色 + 入座动画
+function randomRole(desk){
+  let ava = desk.querySelector(".avatar");
+  // 随机 男/女
+  let isGirl = Math.random() > 0.5;
+  ava.className = "avatar " + (isGirl ? "girl" : "boy");
+  
   ava.style.display = "block";
   ava.style.animation = "sitIn 0.6s ease forwards";
 }
-// 全体下课离场
+
+// 全体下课离场动画
 function allFinish(){
   let allAva = document.querySelectorAll(".avatar");
   allAva.forEach(a=>{
     a.style.animation = "leaveOut 0.9s ease forwards";
-    setTimeout(()=>a.style.display="none",900);
+    setTimeout(()=>{
+      a.style.display="none";
+      a.className="avatar";
+    },900);
   });
 }
 </script>
 
 </body>
-        </html>
+</html>
