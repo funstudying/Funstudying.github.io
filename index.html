@@ -3,70 +3,210 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Funstudying 多人专注自习室</title>
+<title>Funstudying｜沉浸式校园自习教室</title>
 <style>
-body{margin:0;padding:0;background:#f2f6fc;font-family:sans-serif;}
-header{background:#2b7cd3;color:white;text-align:center;padding:22px;}
-.container{max-width:800px;margin:30px auto;padding:0 20px;}
-.card{background:#fff;border-radius:14px;padding:25px;margin-bottom:20px;box-shadow:0 3px 12px #d8e4f2;}
-h2{color:#2b7cd3;margin-top:0;}
-.timer-box{font-size:60px;text-align:center;color:#222;margin:20px 0;}
-.btn{padding:11px 28px;border:none;border-radius:8px;background:#2b7cd3;color:white;font-size:16px;margin:6px;cursor:pointer;}
-.btn:hover{opacity:0.9;}
-textarea{width:100%;height:130px;border:1px solid #ddd;border-radius:8px;padding:12px;font-size:15px;box-sizing:border-box;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:"微軟雅黑",sans-serif;
+  background: url('https://img.freepik.com/free-photo/empty-classroom-with-desks-chairs_181624-23037.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color:#222;
+}
+.bg-mask{
+  background:rgba(255,255,255,0.82);
+  min-height:100vh;
+  padding:30px 15px;
+}
+.container{
+  max-width:850px;
+  margin:0 auto;
+}
+header{
+  text-align:center;
+  padding:20px;
+  background:#2c5290;
+  color:white;
+  border-radius:12px;
+  margin-bottom:20px;
+}
+.role-box{
+  background:#fff;
+  padding:18px;
+  border-radius:12px;
+  margin-bottom:20px;
+  text-align:center;
+  box-shadow:0 2px 10px #ccc;
+}
+.role-btn{
+  padding:10px 22px;
+  margin:0 8px;
+  border:none;
+  border-radius:8px;
+  background:#3c6cb8;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+.role-btn:hover{background:#2c5290;}
+.card{
+  background:#fff;
+  border-radius:12px;
+  padding:25px;
+  margin-bottom:18px;
+  box-shadow:0 2px 12px #ddd;
+}
+h2{color:#2c5290;margin-bottom:15px;}
+.timer-box{
+  font-size:65px;
+  text-align:center;
+  color:#2c5290;
+  font-weight:bold;
+  margin:20px 0;
+}
+.btn{
+  padding:10px 25px;
+  border:none;
+  border-radius:8px;
+  background:#3c6cb8;
+  color:white;
+  font-size:16px;
+  margin:6px;
+  cursor:pointer;
+}
+textarea{
+  width:100%;
+  height:130px;
+  padding:12px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  font-size:15px;
+}
+#roleName{
+  font-size:20px;
+  color:#2c5290;
+  font-weight:bold;
+}
+.soundBtn{
+  background:#28a745;
+}
 </style>
 </head>
 <body>
+<div class="bg-mask">
+<div class="container">
 
 <header>
-<h1>📚 Funstudying 多人在线自习室</h1>
-<p>全班同时进入 · 免费永久使用</p>
+  <h1>🏫 Funstudying 沉浸式校園自習教室</h1>
+  <p>多人同步在線｜真實課室氛圍+鈴聲特效</p>
 </header>
 
-<div class="container">
+<!-- 角色選擇 -->
+<div class="role-box">
+  <p>請選擇你的登入角色：</p>
+  <br>
+  <button class="role-btn" onclick="setRole('普通學生')">🎓 普通學生</button>
+  <button class="role-btn" onclick="setRole('班長')">📋 班長</button>
+  <button class="role-btn" onclick="setRole('老師')">👩‍🏫 老師</button>
+  <p style="margin-top:15px;">目前身份：<span id="roleName">尚未選擇</span></p>
+</div>
+
+<!-- 鈴聲按鈕 -->
+<div class="card" style="text-align:center;">
+  <h2>🔔 課堂鈴聲控制</h2>
+  <button class="btn soundBtn" onclick="playStartBell()">上課鈴</button>
+  <button class="btn" onclick="playEndBell()">下課鈴</button>
+</div>
+
+<!-- 專注計時器 -->
 <div class="card">
-<h2>⏱ 番茄专注计时器</h2>
-<div class="timer-box" id="timer">25:00</div>
-<div style="text-align:center;">
-<button class="btn" onclick="startTimer()">开始专注</button>
-<button class="btn" onclick="pauseTimer()">暂停</button>
-<button class="btn" onclick="resetTimer()">重置</button>
+  <h2>⏱ 課室專注倒數鐘</h2>
+  <div class="timer-box" id="timer">25:00</div>
+  <div style="text-align:center;">
+    <button class="btn" onclick="startTimer()">開始專注</button>
+    <button class="btn" onclick="pauseTimer()">暫停</button>
+    <button class="btn" onclick="resetTimer()">重新計時</button>
+  </div>
+</div>
+
+<!-- 黑板公告 -->
+<div class="card">
+  <h2>📢 黑板公告欄</h2>
+  <p>歡迎各位同學進入線上教室專心學習</p>
+  <p>保持安靜、自律專注，一起提升成績！</p>
+</div>
+
+<!-- 筆記留言 -->
+<div class="card">
+  <h2>📖 座位學習筆記區</h2>
+  <textarea placeholder="在此寫下今日學習計畫、作業內容、讀書心得……"></textarea>
+</div>
+
 </div>
 </div>
 
-<div class="card">
-<h2>📢 班级公告栏</h2>
-<p>今日一起专心自习，互相监督，一起进步！</p>
-</div>
+<audio id="startBell" preload="auto">
+  <source src="https://assets.mixkit.co/sfx/preview/mixkit-school-bell-ring-1002.mp3" type="audio/mpeg">
 
-<div class="card">
-<h2>💬 学习计划留言区</h2>
-<textarea placeholder="写下你今天要完成的学习任务..."></textarea>
-</div>
-</div>
+<audio id="endBell" preload="auto">
+  <source src="https://assets.mixkit.co/sfx/preview/mixkit-interface-notification-alert-2262.mp3" type="audio/mpeg">
+
 
 <script>
+// 角色切換
+function setRole(name){
+  document.getElementById("roleName").innerText = name;
+}
+
+// 鈴聲播放
+function playStartBell(){
+  let s = document.getElementById("startBell");
+  s.currentTime = 0;
+  s.play();
+}
+function playEndBell(){
+  let e = document.getElementById("endBell");
+  e.currentTime = 0;
+  e.play();
+}
+
+// 計時器
 let time = 25 * 60;
 let run = false;
 let interval;
 
-function update(){
-let m = Math.floor(time/60), s = time%60;
-document.getElementById("timer").innerText
-=(m<10?"0"+m:m)+":"+(s<10?"0"+s:s);
+function updateTimer(){
+  let m = Math.floor(time / 60);
+  let s = time % 60;
+  let mm = m < 10 ? '0'+m : m;
+  let ss = s < 10 ? '0'+s : s;
+  document.getElementById("timer").innerText = mm + ":" + ss;
 }
 
 function startTimer(){
-if(run)return;run=true;
-interval=setInterval(()=>{
-if(time>0){time--;update();}
-else{clearInterval(interval);run=false;alert("专注结束！休息一下～");}
-},1000);
+  if(run) return;
+  run = true;
+  interval = setInterval(()=>{
+    if(time > 0){
+      time--;
+      updateTimer();
+    }else{
+      clearInterval(interval);
+      run = false;
+      playEndBell();
+      alert('下課時間到！休息一下～');
+    }
+  },1000);
 }
-
-function pauseTimer(){run=false;clearInterval(interval);}
-function resetTimer(){pauseTimer();time=25*60;update();}
-update();
+function pauseTimer(){
+  run = false;
+  clearInterval(interval);
+}
+function resetTimer(){
+  pauseTimer();
+  time = 25 * 60;
+  updateTimer();
+}
+updateTimer();
 </script>
 
 </body>
