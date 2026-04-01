@@ -1,239 +1,168 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Funstudying｜精美随机男女卡通教室</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Funstudying｜大世界地圖 房間+金幣+換裝</title>
 <style>
-* {margin:0;padding:0;box-sizing:border-box;}
+*{margin:0;padding:0;box-sizing:border-box;}
 body{
-  background:#E6F7FF;
-  font-family:"Microsoft Yahei",sans-serif;
-  padding:20px;
+  font-family:"微軟雅黑",sans-serif;
+  background:#eef7ff;
+  overflow:hidden;
+}
+
+/* 頁面容器 */
+.page{display:none;width:100vw;height:100vh;padding:20px;}
+.active{display:block;}
+
+/* 大地圖頁面 */
+#mapPage{
+  background:#bde2bc;
   text-align:center;
 }
-h1{
-  color:#2F5496;
-  font-size:28px;
-  margin-bottom:10px;
-  text-shadow:1px 1px 3px #ccc;
+.map-title{font-size:32px;margin:30px 0;color:#226622;}
+.room-btn{
+  width:180px;height:140px;
+  margin:20px;
+  border:none;border-radius:20px;
+  font-size:20px;color:white;
+  cursor:pointer;
 }
-.tip{color:#666;margin-bottom:25px;}
+.study-room{background:#4488cc;}
+.rest-room{background:#77bb77;}
+.chat-room{background:#cc77aa;}
+.shop-room{background:#ffbb44;color:#333;}
 
-/* 教室高级质感纯代码 */
-.classroom{
-  width:96%;
-  max-width:950px;
-  height:560px;
-  margin:0 auto;
-  background:#C9E8C9;
-  border:28px solid #8FBB8F;
-  border-radius:22px;
-  position:relative;
-  overflow:hidden;
-  box-shadow:0 10px 30px #00000025;
-}
-
-/* 黑板美化 */
-.blackboard{
-  width:78%;
-  height:80px;
-  background:#264D26;
-  border-radius:12px;
-  margin:18px auto;
-  box-shadow:inset 0 0 10px #112;
-  position:relative;
-}
-.blackboard::after{
-  content:"📖 今日专心学习｜一起自律进步";
-  color:#A2E8A2;
+/* 頂部金幣欄 */
+.top-bar{
+  position:fixed;top:0;left:0;width:100%;
+  background:#fff;padding:10px 20px;
   font-size:18px;
-  line-height:80px;
+  box-shadow:0 2px 8px #ccc;
+  z-index:99;
+}
+.back-btn{
+  padding:6px 16px;border:none;border-radius:8px;
+  background:#666;color:white;cursor:pointer;
 }
 
-.desk-wrap{
-  position:absolute;
-  width:100%;
-  top:120px;
-}
-.row{
-  display:flex;
-  justify-content:center;
-  gap:22px;
-  margin-bottom:26px;
-}
+/* 學習房 */
+#studyPage{background:#d7e9f5;text-align:center;padding-top:80px;}
+.timer-box{font-size:60px;margin:30px;}
+.ctrl-btn{padding:10px 24px;margin:8px;border:none;border-radius:10px;cursor:pointer;}
 
-/* 精致课桌 */
-.desk{
-  width:72px;
-  height:52px;
-  background:linear-gradient(135deg,#B98C60,#A07040);
-  border-radius:10px;
-  cursor:pointer;
-  position:relative;
-  box-shadow:0 4px 6px #00000020;
-  transition:all 0.25s ease;
-}
-.desk:hover{
-  transform:scale(1.1);
-  box-shadow:0 6px 12px #00000030;
-}
+/* 休息室 */
+#restPage{background:#e9f5d7;text-align:center;padding-top:80px;}
 
-/* 角色容器 */
-.avatar{
-  position:absolute;
-  bottom:8px;
-  left:50%;
-  transform:translateX(-50%);
-  width:36px;
-  height:42px;
-  display:none;
-}
+/* 聊天房 */
+#chatPage{background:#f5e9f8;text-align:center;padding-top:80px;}
 
-/* 女生角色 */
-.girl .ava-body{
-  width:34px;height:38px;
-  background:linear-gradient(#FFC8D2,#FFA8BC);
-  border-radius:52% 52% 45% 45%;
-  position:relative;
+/* 商城換裝 */
+#shopPage{background:#fff8e5;text-align:center;padding-top:80px;}
+.cloth-item{
+  width:120px;padding:15px;margin:10px;border-radius:12px;
+  background:#ffe8b0;display:inline-block;cursor:pointer;
 }
-.girl .ava-hair{
-  width:32px;height:16px;
-  background:#222;
-  border-radius:50%;
-  position:absolute;
-  top:-6px;left:1px;
-}
-
-/* 男生角色 */
-.boy .ava-body{
-  width:34px;height:38px;
-  background:linear-gradient(#C8D8FF,#98B8FF);
-  border-radius:52% 52% 45% 45%;
-  position:relative;
-}
-.boy .ava-hair{
-  width:30px;height:14px;
-  background:#111;
-  border-radius:40% 40% 0 0;
-  position:absolute;
-  top:-5px;left:2px;
-}
-
-/* 通用五官 */
-.eye1,.eye2{
-  width:5px;height:6px;
-  background:#111;
-  border-radius:50%;
-  position:absolute;
-  top:14px;
-}
-.eye1{left:8px;}
-.eye2{right:8px;}
-.blush1,.blush2{
-  width:6px;height:4px;
-  background:#FFB8C8;
-  border-radius:50%;
-  position:absolute;
-  top:20px;opacity:0.7;
-}
-.blush1{left:4px;}
-.blush2{right:4px;}
-
-/* 动画 */
-@keyframes sitIn{
-  0%{opacity:0;transform:translateX(-50%) translateY(-30px) scale(0.8);}
-  100%{opacity:1;transform:translateX(-50%) translateY(0) scale(1);}
-}
-@keyframes leaveOut{
-  0%{opacity:1;transform:translateX(-50%) scale(1);}
-  100%{opacity:0;transform:translateX(-50%) translateY(-40px) scale(0.7);}
-}
-
-.btn-leave{
-  margin-top:28px;
-  padding:14px 36px;
-  font-size:17px;
-  border:none;
-  border-radius:12px;
-  background:linear-gradient(#4078C0,#2F5496);
-  color:#fff;
-  cursor:pointer;
-  box-shadow:0 4px 12px #00000020;
-  transition:0.2s;
-}
-.btn-leave:hover{transform:scale(1.05);}
 </style>
 </head>
 <body>
 
-<h1>🍭 Funstudying 随机男女卡通自修教室</h1>
-<p class="tip">纯代码绘制｜点座位随机男/女角色｜多人免费联机</p>
-
-<div class="classroom">
-<div class="blackboard"></div>
-
-<div class="desk-wrap">
-<!-- 第1排 -->
-<div class="row">
-<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-</div>
-<!-- 第2排 -->
-<div class="row">
-<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-</div>
-<!-- 第3排 -->
-<div class="row">
-<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-</div>
-<!-- 第4排 -->
-<div class="row">
-<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-<div class="desk" onclick="randomRole(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
-</div>
-</div>
+<!-- 頂部金幣列 -->
+<div class="top-bar">
+  <button class="back-btn" onclick="goMap()">返回地圖</button>
+  &nbsp;&nbsp;💰 你的金幣：<span id="coinNum">0</span>
 </div>
 
-<button class="btn-leave" onclick="allFinish()">🔔 全班下课收桌离开</button>
+<!-- 1.大世界地圖 -->
+<div id="mapPage" class="page active">
+  <div class="map-title">🌍 歡迎來到 Funstudying 大世界</div>
+  <br>
+  <button class="room-btn study-room" onclick="goPage('studyPage')">📚 專業學習房</button>
+  <button class="room-btn rest-room" onclick="goPage('restPage')">☁️ 放鬆休息室</button>
+  <br>
+  <button class="room-btn chat-room" onclick="goPage('chatPage')">💬 好友娛樂聊天室</button>
+  <button class="room-btn shop-room" onclick="goPage('shopPage')">👗 換裝金幣商城</button>
+</div>
+
+<!-- 2.學習房 -->
+<div id="studyPage" class="page">
+  <h1>📖 專心學習計時室</h1>
+  <div class="timer-box" id="timer">25:00</div>
+  <button class="ctrl-btn" onclick="startTimer()">開始專心</button>
+  <button class="ctrl-btn" onclick="pauseTimer()">暫停</button>
+  <button class="ctrl-btn" onclick="endStudy()">完成領金幣+50</button>
+</div>
+
+<!-- 3.休息室 -->
+<div id="restPage" class="page">
+  <h1>☁️ 輕鬆休息空間</h1>
+  <p style="margin-top:30px;font-size:20px;">這裡可以放鬆心情、緩和眼睛</p>
+</div>
+
+<!-- 4.聊天娛樂房 -->
+<div id="chatPage" class="page">
+  <h1>💬 好友聊天娛樂房</h1>
+  <textarea style="width:80%;height:180px;margin-top:30px;padding:15px;border-radius:12px;" placeholder="在這裡和朋友聊天打氣～"></textarea>
+</div>
+
+<!-- 5.換裝商城 -->
+<div id="shopPage" class="page">
+  <h1>👗 金幣換裝商城</h1>
+  <div class="cloth-item" onclick="buyCloth(100)">粉紅校服 💰100</div>
+  <div class="cloth-item" onclick="buyCloth(150)">藍色運動服 💰150</div>
+  <div class="cloth-item" onclick="buyCloth(200)">可愛洋裝 💰200</div>
+  <p style="margin-top:30px;">累積學習金幣，解鎖更多造型！</p>
+</div>
 
 <script>
-// 随机男女角色 + 入座动画
-function randomRole(desk){
-  let ava = desk.querySelector(".avatar");
-  // 随机 男/女
-  let isGirl = Math.random() > 0.5;
-  ava.className = "avatar " + (isGirl ? "girl" : "boy");
-  
-  ava.style.display = "block";
-  ava.style.animation = "sitIn 0.6s ease forwards";
+// 本地儲存金幣
+let coins = parseInt(localStorage.getItem("myCoin")) || 0;
+document.getElementById("coinNum").innerText = coins;
+
+// 頁面切換
+function goPage(id){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+function goMap(){goPage("mapPage");}
+
+// 計時器
+let time = 25*60;
+let run = false;
+let timer;
+function updateT(){
+  let m = Math.floor(time/60),s=time%60;
+  document.getElementById("timer").innerText=(m<10?"0"+m:m)+":"+(s<10?"0"+s:s);
+}
+function startTimer(){
+  if(run)return;run=true;
+  timer=setInterval(()=>{if(time>0)time--;updateT();},1000);
+}
+function pauseTimer(){run=false;clearInterval(timer);}
+
+// 學習完成領金幣
+function endStudy(){
+  pauseTimer();
+  coins += 50;
+  localStorage.setItem("myCoin",coins);
+  document.getElementById("coinNum").innerText=coins;
+  alert("學習完成！獲得 50 金幣✨");
+  time=25*60;updateT();
 }
 
-// 全体下课离场动画
-function allFinish(){
-  let allAva = document.querySelectorAll(".avatar");
-  allAva.forEach(a=>{
-    a.style.animation = "leaveOut 0.9s ease forwards";
-    setTimeout(()=>{
-      a.style.display="none";
-      a.className="avatar";
-    },900);
-  });
+// 買衣服扣金幣
+function buyCloth(price){
+  if(coins>=price){
+    coins -= price;
+    localStorage.setItem("myCoin",coins);
+    document.getElementById("coinNum").innerText=coins;
+    alert("購買成功！已換上新衣服～");
+  }else{
+    alert("金幣不足！快去學習掙錢💪");
+  }
 }
+updateT();
 </script>
 
 </body>
