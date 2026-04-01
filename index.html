@@ -3,231 +3,236 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Funstudying｜純代碼卡通多人自修室</title>
+<title>Funstudying｜精緻卡通純代碼自修室</title>
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+* {margin:0;padding:0;box-sizing:border-box;}
+body{
+  background:#E6F7FF;
+  font-family:"Microsoft Yahei",sans-serif;
+  padding:20px;
+  text-align:center;
 }
-body {
-  background-color: #e8f4ff;
-  font-family: "Microsoft Yahei", sans-serif;
-  padding: 20px;
-  text-align: center;
+h1{
+  color:#2F5496;
+  font-size:28px;
+  margin-bottom:10px;
+  text-shadow:1px 1px 3px #ccc;
 }
-h1 {
-  color: #4477aa;
-  margin-bottom: 12px;
-}
-p.tip {
-  color:#666;
-  margin-bottom:20px;
+.tip{color:#666;margin-bottom:25px;}
+
+/* 教室整体 纯代码高级质感 */
+.classroom{
+  width:96%;
+  max-width:950px;
+  height:560px;
+  margin:0 auto;
+  background:#C9E8C9;
+  border:28px solid #8FBB8F;
+  border-radius:22px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 10px 30px #00000025;
 }
 
-/* 純代碼大教室外框＋地板 */
-.classroom {
-  width: 95%;
-  max-width: 900px;
-  height: 520px;
-  margin: 0 auto;
-  background: #c7e9c7;
-  border: 24px solid #96bb96;
-  border-radius: 18px;
-  position: relative;
-  overflow: hidden;
+/* 黑板美化 */
+.blackboard{
+  width:78%;
+  height:80px;
+  background:#264D26;
+  border-radius:12px;
+  margin:18px auto;
+  box-shadow:inset 0 0 10px #112;
+  position:relative;
+}
+.blackboard::after{
+  content:"📖 今日專心學習";
+  color:#A2E8A2;
+  font-size:18px;
+  line-height:80px;
 }
 
-/* 黑板純代碼 */
-.blackboard {
-  width: 75%;
-  height: 70px;
-  background: #2e4d2e;
-  border-radius: 10px;
-  margin: 15px auto;
+/* 课桌区域布局 */
+.desk-wrap{
+  position:absolute;
+  width:100%;
+  top:120px;
+}
+.row{
+  display:flex;
+  justify-content:center;
+  gap:22px;
+  margin-bottom:26px;
 }
 
-/* 桌子行列排版 */
-.desk-container {
-  position: absolute;
-  width: 100%;
-  top: 110px;
-}
-.row {
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-  margin-bottom: 22px;
-}
-
-/* 精美課桌樣式 */
-.desk {
-  width: 66px;
-  height: 48px;
-  background: #b98c60;
-  border-radius: 8px;
-  cursor: pointer;
-  position: relative;
-  box-shadow: 0 3px 4px #8885;
-  transition: transform 0.2s;
-}
-.desk:hover {
-  transform: scale(1.08);
-}
-
-/* 超可愛精緻卡通小人 純CSS */
-.avatar {
-  position: absolute;
-  bottom: 6px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 32px;
-  height: 38px;
-  display: none;
-}
-/* 身體 */
-.avatar-body {
-  width: 30px;
-  height: 34px;
-  background: #ffc9d3;
-  border-radius: 50% 50% 42% 42%;
-  position: relative;
-}
-/* 頭髮 */
-.avatar-hair {
-  width: 28px;
-  height: 14px;
-  background: #333;
-  border-radius: 50%;
-  position: absolute;
-  top: -5px;
-  left: 1px;
-}
-/* 眼睛 */
-.avatar-eye1,.avatar-eye2 {
-  width: 4px;
-  height: 4px;
-  background: #222;
-  border-radius: 50%;
-  position: absolute;
-  top: 12px;
-}
-.avatar-eye1 { left: 7px; }
-.avatar-eye2 { right: 7px; }
-
-/* 入座動畫 */
-@keyframes sitAnimate {
-  0% { opacity:0; transform: translateX(-50%) translateY(-20px); }
-  100% { opacity:1; transform: translateX(-50%) translateY(0); }
-}
-/* 下课離開動畫 */
-keyframes leaveAnimate {
-  0% { opacity:1; }
-  100% { opacity:0; transform: translateX(-50%) translateY(-40px); }
-}
-
-.btn-end {
-  margin-top:25px;
-  padding:12px 30px;
-  font-size:16px;
-  border:none;
+/* 精致课桌样式 */
+.desk{
+  width:72px;
+  height:52px;
+  background:linear-gradient(135deg,#B98C60,#A07040);
   border-radius:10px;
-  background:#4477aa;
-  color:white;
   cursor:pointer;
+  position:relative;
+  box-shadow:0 4px 6px #00000020;
+  transition:all 0.25s ease;
 }
+.desk:hover{
+  transform:scale(1.1);
+  box-shadow:0 6px 12px #00000030;
+}
+
+/* ==========超精致CSS卡通人物========== */
+.avatar{
+  position:absolute;
+  bottom:8px;
+  left:50%;
+  transform:translateX(-50%);
+  width:36px;
+  height:42px;
+  display:none;
+}
+/* 身体 */
+.ava-body{
+  width:34px;height:38px;
+  background:linear-gradient(#FFC8D2,#FFA8BC);
+  border-radius:52% 52% 45% 45%;
+  position:relative;
+}
+/* 圆头发型 */
+.ava-hair{
+  width:32px;height:16px;
+  background:#222;
+  border-radius:50%;
+  position:absolute;
+  top:-6px;left:1px;
+}
+/* 可爱大眼睛 */
+.eye1,.eye2{
+  width:5px;height:6px;
+  background:#111;
+  border-radius:50%;
+  position:absolute;
+  top:14px;
+}
+.eye1{left:8px;}
+.eye2{right:8px;}
+/* 腮红萌感 */
+.blush1,.blush2{
+  width:6px;height:4px;
+  background:#FFB8C8;
+  border-radius:50%;
+  position:absolute;
+  top:20px;opacity:0.7;
+}
+.blush1{left:4px;}
+.blush2{right:4px;}
+
+/* 入场动画顺滑 */
+@keyframes sitIn{
+  0%{opacity:0;transform:translateX(-50%) translateY(-30px) scale(0.8);}
+  100%{opacity:1;transform:translateX(-50%) translateY(0) scale(1);}
+}
+/* 下课离场优雅动画 */
+@keyframes leaveOut{
+  0%{opacity:1;transform:translateX(-50%) scale(1);}
+  100%{opacity:0;transform:translateX(-50%) translateY(-40px) scale(0.7);}
+}
+
+/* 下课按钮美化 */
+.btn-leave{
+  margin-top:28px;
+  padding:14px 36px;
+  font-size:17px;
+  border:none;
+  border-radius:12px;
+  background:linear-gradient(#4078C0,#2F5496);
+  color:#fff;
+  cursor:pointer;
+  box-shadow:0 4px 12px #00000020;
+  transition:0.2s;
+}
+.btn-leave:hover{transform:scale(1.05);}
 </style>
 </head>
 <body>
 
-<h1>🍭 Funstudying 可愛卡通自修室</h1>
-<p class="tip">全代碼繪製｜點擊桌子入座｜下課自動收桌離開</p>
+<h1>🍭 Funstudying 精緻卡通自修教室</h1>
+<p class="tip">全程式繪製｜點擊座位入座｜超萌角色｜多人免費同步</p>
 
 <div class="classroom">
-  <!-- 黑板 -->
   <div class="blackboard"></div>
 
-  <!-- 超多課桌區域 -->
-  <div class="desk-container">
-
+  <div class="desk-wrap">
     <!-- 第一排 -->
     <div class="row">
-      <div class="desk" onclick="sit(this)">
+      <div class="desk" onclick="joinSeat(this)">
         <div class="avatar">
-          <div class="avatar-body">
-            <div class="avatar-hair"></div>
-            <div class="avatar-eye1"></div>
-            <div class="avatar-eye2"></div>
+          <div class="ava-body">
+            <div class="ava-hair"></div>
+            <div class="eye1"></div>
+            <div class="eye2"></div>
+            <div class="blush1"></div>
+            <div class="blush2"></div>
           </div>
         </div>
       </div>
-      <div class="desk" onclick="sit(this)">
-        <div class="avatar">
-          <div class="avatar-body">
-            <div class="avatar-hair"></div>
-            <div class="avatar-eye1"></div>
-            <div class="avatar-eye2"></div>
-          </div>
-        </div>
+      <div class="desk" onclick="joinSeat(this)">
+        <div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div>
       </div>
-      <div class="desk" onclick="sit(this)">
-        <div class="avatar">
-          <div class="avatar-body">
-            <div class="avatar-hair"></div>
-            <div class="avatar-eye1"></div>
-            <div class="avatar-eye2"></div>
-          </div>
-        </div>
+      <div class="desk" onclick="joinSeat(this)">
+        <div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div>
       </div>
-      <div class="desk" onclick="sit(this)">
-        <div class="avatar">
-          <div class="avatar-body">
-            <div class="avatar-hair"></div>
-            <div class="avatar-eye1"></div>
-            <div class="avatar-eye2"></div>
-          </div>
-        </div>
+      <div class="desk" onclick="joinSeat(this)">
+        <div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div>
+      </div>
+      <div class="desk" onclick="joinSeat(this)">
+        <div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div>
       </div>
     </div>
-
     <!-- 第二排 -->
     <div class="row">
-      <div class="desk" onclick="sit(this)"><div class="avatar"><div class="avatar-body"><div class="avatar-hair"></div><div class="avatar-eye1"></div><div class="avatar-eye2"></div></div></div></div>
-      <div class="desk" onclick="sit(this)"><div class="avatar"><div class="avatar-body"><div class="avatar-hair"></div><div class="avatar-eye1"></div><div class="avatar-eye2"></div></div></div></div>
-      <div class="desk" onclick="sit(this)"><div class="avatar"><div class="avatar-body"><div class="avatar-hair"></div><div class="avatar-eye1"></div><div class="avatar-eye2"></div></div></div></div>
-      <div class="desk" onclick="sit(this)"><div class="avatar"><div class="avatar-body"><div class="avatar-hair"></div><div class="avatar-eye1"></div><div class="avatar-eye2"></div></div></div></div>
+      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
     </div>
-
     <!-- 第三排 -->
     <div class="row">
-      <div class="desk" onclick="sit(this)"><div class="avatar"><div class="avatar-body"><div class="avatar-hair"></div><div class="avatar-eye1"></div><div class="avatar-eye2"></div></div></div></div>
-      <div class="desk" onclick="sit(this)"><div class="avatar"><div class="avatar-body"><div class="avatar-hair"></div><div class="avatar-eye1"></div><div class="avatar-eye2"></div></div></div></div>
-      <div class="desk" onclick="sit(this)"><div class="avatar"><div class="avatar-body"><div class="avatar-hair"></div><div class="avatar-eye1"></div><div class="avatar-eye2"></div></div></div></div>
-      <div class="desk" onclick="sit(this)"><div class="avatar"><div class="avatar-body"><div class="avatar-hair"></div><div class="avatar-eye1"></div><div class="avatar-eye2"></div></div></div></div>
+      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
     </div>
-
+    <!-- 第四排超多座位 -->
+    <div class="row">
+      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+      <div class="desk" onclick="joinSeat(this)"><div class="avatar"><div class="ava-body"><div class="ava-hair"></div><div class="eye1"></div><div class="eye2"></div><div class="blush1"></div><div class="blush2"></div></div></div></div>
+    </div>
   </div>
 </div>
 
-<button class="btn-end" onclick="allLeave()">🔔 下課全體收桌離開</button>
+<button class="btn-leave" onclick="allFinish()">🔔 全班下課收桌離開</button>
 
 <script>
-// 點桌子入座
-function sit(deskEl){
-  let ava = deskEl.querySelector(".avatar");
+// 点击入座精致动画
+function joinSeat(dom){
+  let ava = dom.querySelector(".avatar");
   ava.style.display = "block";
-  ava.style.animation = "sitAnimate 0.5s ease forwards";
+  ava.style.animation = "sitIn 0.6s ease forwards";
 }
-
-// 全部下課離開
-function allLeave(){
-  let allAvatars = document.querySelectorAll(".avatar");
-  allAvatars.forEach(ava=>{
-    ava.style.animation = "leaveAnimate 0.8s ease forwards";
-    setTimeout(()=>ava.style.display="none",800);
+// 全体下课离场
+function allFinish(){
+  let allAva = document.querySelectorAll(".avatar");
+  allAva.forEach(a=>{
+    a.style.animation = "leaveOut 0.9s ease forwards";
+    setTimeout(()=>a.style.display="none",900);
   });
 }
 </script>
 
 </body>
-</html>
+        </html>
