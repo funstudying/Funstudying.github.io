@@ -1,63 +1,132 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Funstudying 共享学习网站</title>
+<title>Funstudying｜多人在线专注自习室</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
 body{
-  background:#f5f9ff;
-  font-family:"Microsoft Yahei",sans-serif;
-  padding:40px 20px;
+  margin:0;
+  padding:0;
+  background:#f2f6fc;
+  font-family:sans-serif;
+}
+header{
+  background:#2b7cd3;
+  color:white;
+  text-align:center;
+  padding:20px;
 }
 .container{
-  max-width:700px;
-  margin:0 auto;
-  background:#fff;
-  padding:40px;
-  border-radius:16px;
-  box-shadow:0 4px 20px #cce0f5;
-  text-align:center;
+  max-width:800px;
+  margin:30px auto;
+  padding:20px;
 }
-h1{
-  color:#2b7cd3;
+.card{
+  background:white;
+  border-radius:14px;
+  padding:25px;
   margin-bottom:20px;
+  box-shadow:0 3px 12px #d8e4f2;
 }
-p{
-  font-size:17px;
-  color:#555;
-  line-height:1.8;
-  margin:10px 0;
+h2{color:#2b7cd3;}
+.timer-box{
+  font-size:60px;
+  text-align:center;
+  color:#222;
+  margin:20px 0;
 }
-hr{
-  margin:30px 0;
+.btn{
+  padding:10px 25px;
   border:none;
-  height:1px;
-  background:#eee;
+  border-radius:8px;
+  background:#2b7cd3;
+  color:white;
+  font-size:16px;
+  margin:5px;
 }
-.info{
-  background:#f0f7ff;
-  padding:15px;
-  border-radius:10px;
-  color:#2b7cd3;
+textarea{
+  width:100%;
+  height:120px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  padding:10px;
 }
 </style>
 </head>
 <body>
+
+<header>
+  <h1>📚 Funstudying 多人在线专注自习室</h1>
+  <p>全班同学可同时进入一起专注学习</p>
+</header>
+
 <div class="container">
-  <h1>📚 Funstudying 学习共享站</h1>
-  <p>欢迎全体同学进入共享网站</p>
-  <p>完全免费 · 多人同时连线访问</p>
-  <hr>
-  <div class="info">
-    <p>这里可以放笔记、作业资料、班级公告</p>
-    <p>所有人打开网址就能查看内容</p>
+
+  <!-- 专注计时器 -->
+  <div class="card">
+    <h2>⏱ 专注计时器</h2>
+    <div class="timer-box" id="timer">25:00</div>
+    <div style="text-align:center;">
+      <button class="btn" onclick="startTimer()">开始专注</button>
+      <button class="btn" onclick="pauseTimer()">暂停</button>
+      <button class="btn" onclick="resetTimer()">重置</button>
+    </div>
   </div>
-  <p style="margin-top:30px;font-size:14px;color:#999;">
-  网址：https://Funstudying.github.io
-  </p>
+
+  <!-- 公告板 -->
+  <div class="card">
+    <h2>📢 班级公告区</h2>
+    <p>管理员可以在这里更新学习任务：</p>
+    <p>今日学习目标：专心自习、打卡自律</p>
+  </div>
+
+  <!-- 留言区 -->
+  <div class="card">
+    <h2>💬 同学留言区</h2>
+    <textarea placeholder="写下你的今日学习计划..."></textarea>
+  </div>
+
 </div>
+
+<script>
+// 25分钟专注计时器
+let time = 25 * 60;
+let run = false;
+let interval;
+
+function updateView(){
+  let m = Math.floor(time / 60);
+  let s = time % 60;
+  document.getElementById("timer").innerText
+     = (m<10?"0"+m:m) + ":" + (s<10?"0"+s:s);
+}
+
+function startTimer(){
+  if(run) return;
+  run = true;
+  interval = setInterval(()=>{
+    if(time>0){
+      time--;
+      updateView();
+    }else{
+      clearInterval(interval);
+      alert("专注时间结束！休息一下～");
+    }
+  },1000);
+}
+
+function pauseTimer(){
+  run = false;
+  clearInterval(interval);
+}
+
+function resetTimer(){
+  pauseTimer();
+  time = 25 * 60;
+  updateView();
+}
+</script>
+
 </body>
 </html>
