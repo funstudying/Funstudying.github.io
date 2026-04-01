@@ -1,146 +1,230 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>卡通纯代码教室｜仿CoStudy</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Funstudying｜純代碼卡通多人自修室</title>
 <style>
-* {margin:0;padding:0;box-sizing:border-box;}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body {
-  background: #E8F4FF;
-  font-family: sans-serif;
+  background-color: #e8f4ff;
+  font-family: "Microsoft Yahei", sans-serif;
+  padding: 20px;
   text-align: center;
-  padding:20px;
 }
-h1 {color:#4477AA;margin-bottom:20px;}
+h1 {
+  color: #4477aa;
+  margin-bottom: 12px;
+}
+p.tip {
+  color:#666;
+  margin-bottom:20px;
+}
 
-/* 纯代码绘制 俯视教室地板 */
+/* 純代碼大教室外框＋地板 */
 .classroom {
-  width: 90%;
-  max-width:800px;
-  height:500px;
-  margin:0 auto;
-  background:#C2E0C2;
-  border:20px solid #99BB99;
-  border-radius:16px;
-  position:relative;
-  overflow:hidden;
+  width: 95%;
+  max-width: 900px;
+  height: 520px;
+  margin: 0 auto;
+  background: #c7e9c7;
+  border: 24px solid #96bb96;
+  border-radius: 18px;
+  position: relative;
+  overflow: hidden;
 }
 
-/* 黑板 纯代码 */
+/* 黑板純代碼 */
 .blackboard {
-  width:70%;
-  height:80px;
-  background:#224422;
-  margin:10px auto;
-  border-radius:8px;
+  width: 75%;
+  height: 70px;
+  background: #2e4d2e;
+  border-radius: 10px;
+  margin: 15px auto;
 }
 
-/* 课桌格子 纯代码排版 */
-.desk-row {
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  margin:15px 0;
+/* 桌子行列排版 */
+.desk-container {
+  position: absolute;
+  width: 100%;
+  top: 110px;
 }
+.row {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+/* 精美課桌樣式 */
 .desk {
-  width:70px;
-  height:50px;
-  background:#A67C52;
-  border-radius:6px;
-  position:relative;
+  width: 66px;
+  height: 48px;
+  background: #b98c60;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 3px 4px #8885;
+  transition: transform 0.2s;
+}
+.desk:hover {
+  transform: scale(1.08);
+}
+
+/* 超可愛精緻卡通小人 純CSS */
+.avatar {
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 38px;
+  display: none;
+}
+/* 身體 */
+.avatar-body {
+  width: 30px;
+  height: 34px;
+  background: #ffc9d3;
+  border-radius: 50% 50% 42% 42%;
+  position: relative;
+}
+/* 頭髮 */
+.avatar-hair {
+  width: 28px;
+  height: 14px;
+  background: #333;
+  border-radius: 50%;
+  position: absolute;
+  top: -5px;
+  left: 1px;
+}
+/* 眼睛 */
+.avatar-eye1,.avatar-eye2 {
+  width: 4px;
+  height: 4px;
+  background: #222;
+  border-radius: 50%;
+  position: absolute;
+  top: 12px;
+}
+.avatar-eye1 { left: 7px; }
+.avatar-eye2 { right: 7px; }
+
+/* 入座動畫 */
+@keyframes sitAnimate {
+  0% { opacity:0; transform: translateX(-50%) translateY(-20px); }
+  100% { opacity:1; transform: translateX(-50%) translateY(0); }
+}
+/* 下课離開動畫 */
+keyframes leaveAnimate {
+  0% { opacity:1; }
+  100% { opacity:0; transform: translateX(-50%) translateY(-40px); }
+}
+
+.btn-end {
+  margin-top:25px;
+  padding:12px 30px;
+  font-size:16px;
+  border:none;
+  border-radius:10px;
+  background:#4477aa;
+  color:white;
   cursor:pointer;
-  transition:0.2s;
-}
-.desk:hover {transform:scale(1.05);box-shadow:0 0 8px #888;}
-
-/* 纯代码卡通小人 无图片 */
-.student {
-  width:30px;
-  height:36px;
-  background:#FFB6C1;
-  border-radius:50% 50% 40% 40%;
-  position:absolute;
-  bottom:8px;
-  left:50%;
-  transform:translateX(-50%);
-  display:none;
-}
-/* 小人头发 */
-.student::before{
-  content:"";
-  width:26px;height:12px;
-  background:#333;
-  border-radius:50%;
-  position:absolute;
-  top:-4px;left:2px;
-}
-
-/* 入座/下课动画 */
-@keyframes sitIn {
-  0%{transform:translateX(-50%) translateY(-20px);opacity:0;}
-  100%{transform:translateX(-50%) translateY(0);opacity:1;}
-}
-@keyframes packUp {
-  0%{opacity:1;}
-  100%{opacity:0;transform:translateX(-50%) translateY(-30px);}
 }
 </style>
 </head>
 <body>
 
-<h1>🍭 纯代码卡通自习教室（仿CoStudy）</h1>
-<p>点击课桌入座｜无背景图片·全代码绘制</p><br>
+<h1>🍭 Funstudying 可愛卡通自修室</h1>
+<p class="tip">全代碼繪製｜點擊桌子入座｜下課自動收桌離開</p>
 
 <div class="classroom">
-  <!-- 纯代码黑板 -->
+  <!-- 黑板 -->
   <div class="blackboard"></div>
 
-  <!-- 第一排课桌 -->
-  <div class="desk-row">
-    <div class="desk" onclick="sit(this)">
-      <div class="student"></div>
-    </div>
-    <div class="desk" onclick="sit(this)">
-      <div class="student"></div>
-    </div>
-    <div class="desk" onclick="sit(this)">
-      <div class="student"></div>
-    </div>
-  </div>
+  <!-- 超多課桌區域 -->
+  <div class="desk-container">
 
-  <!-- 第二排课桌 -->
-  <div class="desk-row">
-    <div class="desk" onclick="sit(this)">
-      <div class="student"></div>
+    <!-- 第一排 -->
+    <div class="row">
+      <div class="desk" onclick="sit(this)">
+        <div class="avatar">
+          <div class="avatar-body">
+            <div class="avatar-hair"></div>
+            <div class="avatar-eye1"></div>
+            <div class="avatar-eye2"></div>
+          </div>
+        </div>
+      </div>
+      <div class="desk" onclick="sit(this)">
+        <div class="avatar">
+          <div class="avatar-body">
+            <div class="avatar-hair"></div>
+            <div class="avatar-eye1"></div>
+            <div class="avatar-eye2"></div>
+          </div>
+        </div>
+      </div>
+      <div class="desk" onclick="sit(this)">
+        <div class="avatar">
+          <div class="avatar-body">
+            <div class="avatar-hair"></div>
+            <div class="avatar-eye1"></div>
+            <div class="avatar-eye2"></div>
+          </div>
+        </div>
+      </div>
+      <div class="desk" onclick="sit(this)">
+        <div class="avatar">
+          <div class="avatar-body">
+            <div class="avatar-hair"></div>
+            <div class="avatar-eye1"></div>
+            <div class="avatar-eye2"></div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="desk" onclick="sit(this)">
-      <div class="student"></div>
-    </div>
-    <div class="desk" onclick="sit(this)">
-      <div class="student"></div>
-    </div>
-  </div>
 
+    <!-- 第二排 -->
+    <div class="row">
+      <div class="desk" onclick="sit(this)"><div class="avatar"><div class="avatar-body"><div class="avatar-hair"></div><div class="avatar-eye1"></div><div class="avatar-eye2"></div></div></div></div>
+      <div class="desk" onclick="sit(this)"><div class="avatar"><div class="avatar-body"><div class="avatar-hair"></div><div class="avatar-eye1"></div><div class="avatar-eye2"></div></div></div></div>
+      <div class="desk" onclick="sit(this)"><div class="avatar"><div class="avatar-body"><div class="avatar-hair"></div><div class="avatar-eye1"></div><div class="avatar-eye2"></div></div></div></div>
+      <div class="desk" onclick="sit(this)"><div class="avatar"><div class="avatar-body"><div class="avatar-hair"></div><div class="avatar-eye1"></div><div class="avatar-eye2"></div></div></div></div>
+    </div>
+
+    <!-- 第三排 -->
+    <div class="row">
+      <div class="desk" onclick="sit(this)"><div class="avatar"><div class="avatar-body"><div class="avatar-hair"></div><div class="avatar-eye1"></div><div class="avatar-eye2"></div></div></div></div>
+      <div class="desk" onclick="sit(this)"><div class="avatar"><div class="avatar-body"><div class="avatar-hair"></div><div class="avatar-eye1"></div><div class="avatar-eye2"></div></div></div></div>
+      <div class="desk" onclick="sit(this)"><div class="avatar"><div class="avatar-body"><div class="avatar-hair"></div><div class="avatar-eye1"></div><div class="avatar-eye2"></div></div></div></div>
+      <div class="desk" onclick="sit(this)"><div class="avatar"><div class="avatar-body"><div class="avatar-hair"></div><div class="avatar-eye1"></div><div class="avatar-eye2"></div></div></div></div>
+    </div>
+
+  </div>
 </div>
 
-<br>
-<button style="padding:10px 25px;font-size:16px;" onclick="classOver()">🔔下课收桌离开</button>
+<button class="btn-end" onclick="allLeave()">🔔 下課全體收桌離開</button>
 
 <script>
-// 点击课桌：小人入座动画
+// 點桌子入座
 function sit(deskEl){
-  const avatar = deskEl.querySelector('.student');
-  avatar.style.display = 'block';
-  avatar.style.animation = "sitIn 0.5s ease forwards";
+  let ava = deskEl.querySelector(".avatar");
+  ava.style.display = "block";
+  ava.style.animation = "sitAnimate 0.5s ease forwards";
 }
 
-// 下课：全体小人收桌离开动画
-function classOver(){
-  const allAvatar = document.querySelectorAll('.student');
-  allAvatar.forEach(av=>{
-    av.style.animation = "packUp 0.8s ease forwards";
-    setTimeout(()=>av.style.display='none',800);
+// 全部下課離開
+function allLeave(){
+  let allAvatars = document.querySelectorAll(".avatar");
+  allAvatars.forEach(ava=>{
+    ava.style.animation = "leaveAnimate 0.8s ease forwards";
+    setTimeout(()=>ava.style.display="none",800);
   });
 }
 </script>
