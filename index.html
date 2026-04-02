@@ -3,38 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Funstudying｜全Bug修复+可装修私房+精致衣服+完整教室</title>
+<title>Funstudying｜私人房间超强个性化全套</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:"微软雅黑",sans-serif;overflow:hidden;}
 
-/* 右上角刷新按钮 */
-.refresh-btn{
-  position: fixed;top:12px;right:20px;z-index:9999;
-  padding:6px 14px;background:#ff7755;color:white;border:none;
-  border-radius:8px;cursor:pointer;font-size:15px;
-}
+/* 右上角刷新 */
+.refresh-btn{position:fixed;top:12px;right:20px;z-index:9999;padding:6px 14px;background:#ff7755;color:white;border:none;border-radius:8px;cursor:pointer;}
 .refresh-btn:hover{background:#ff5533;}
 
-/* 左上角人物【精致新版+衣服绝不遮脸】 */
+/* 左上角精致人物+衣服不遮眼 */
 .myAvatarBox{position:fixed;top:70px;left:15px;z-index:999;}
 .baseAvatar{width:52px;height:64px;position:relative;}
 .avaHead{width:48px;height:36px;background:#ffd9df;border-radius:50%;position:absolute;top:0;left:2px;}
 .avaHair{width:44px;height:18px;background:#222;border-radius:50%;position:absolute;top:-4px;left:4px;}
-.eyeL,.eyeR{width:5px;height:6px;background:#111;border-radius:50%;position:absolute;top:15px;}
+.eyeL,.eyeR{width:5px;height:6px;background:#111;border-radius:15px;position:absolute;top:15px;}
 .eyeL{left:13px;}.eyeR{right:13px;}
 .blushL,.blushR{width:7px;height:4px;background:#ffb8c8;border-radius:50%;position:absolute;top:22px;opacity:0.6;}
-.blushL{left:6px;}.blushR{right:6px;}
 .avaBodyBase{width:42px;height:24px;background:#ffe4eb;border-radius:10px;position:absolute;bottom:0;left:5px;}
-
-/* ========== 超精致新版衣服 3套质感升级 ========== */
 .clothLayer{width:42px;height:24px;position:absolute;bottom:0;left:5px;border-radius:10px;}
 .cloth0{display:none;}
-/* 精致粉白校服 */
 .cloth1{background:linear-gradient(#ffb3cc,#ff88aa);border-top:2px solid #fff5f8;}
-/* 清爽蓝白运动服 */
 .cloth2{background:linear-gradient(#a0c8ff,#70a8ee);border-top:2px solid #e8f2ff;}
-/* 温柔奶油洋装 */
 .cloth3{background:linear-gradient(#ffe2b8,#ffcd88);border-top:2px solid #fff3e0;}
 
 .page{display:none;width:100vw;height:100vh;padding:20px;}
@@ -42,7 +32,7 @@ body{font-family:"微软雅黑",sans-serif;overflow:hidden;}
 .top-bar{position:fixed;top:0;left:0;width:100%;background:#fff;padding:10px 20px;box-shadow:0 2px 8px;z-index:99;}
 .back-btn{padding:6px 16px;border:none;border-radius:8px;background:#666;color:white;cursor:pointer;}
 
-/* 精美建筑大地图 */
+/* 精美建筑地图 */
 #mapPage{background:#98d8aa;text-align:center;padding-top:90px;overflow:hidden;}
 .map-title{font-size:36px;color:#206030;text-shadow:2px 2px #fff;margin-bottom:40px;}
 .building{display:inline-block;margin:15px 20px;cursor:pointer;transition:transform 0.2s;}
@@ -69,267 +59,195 @@ body{font-family:"微软雅黑",sans-serif;overflow:hidden;}
 .house-body{width:110px;height:100px;background:#9966ff;border-radius:10px;margin:0 auto;}
 .house-sign{position:absolute;top:35px;width:110px;text-align:center;color:white;font-weight:bold;}
 
-/* ========== 图书馆 完整修复教室+座位小人 ========== */
+/* 图书馆学习房修复 */
 #studyPage{background:#d7e9f5;text-align:center;padding-top:80px;}
 .classroomBg{width:90%;height:420px;margin:0 auto;background:#c9e8c9;border:20px solid #8fbb8f;border-radius:16px;position:relative;overflow:hidden;}
 .blackboard{width:70%;height:60px;background:#264d26;border-radius:10px;margin:15px auto;line-height:60px;color:#a2e8a2;}
 .deskRow{display:flex;justify-content:center;gap:16px;margin:18px 0;}
 .desk{width:60px;height:42px;background:#b98c60;border-radius:8px;cursor:pointer;position:relative;}
-.desk:hover{transform:scale(1.08);}
-.seatAvatar{
-  position:absolute;bottom:4px;left:50%;transform:translateX(-50%);
-  width:28px;height:34px;display:none;
-  background:#ffc9d3;border-radius:50% 50% 40% 40%;
-}
+.seatAvatar{position:absolute;bottom:4px;left:50%;transform:translateX(-50%);width:28px;height:34px;display:none;background:#ffc9d3;border-radius:50% 50% 40% 40%;}
 .timer-wrap{margin-top:20px;}
-.timer-box{font-size:50px;margin:10px;color:#222;}
+.timer-box{font-size:50px;margin:10px;}
 
-/* 休息室 */
+/* 休息室 & 餐厅 & 商城 & 排行 */
 #restPage{background:#f0e9ff;text-align:center;padding-top:80px;}
 .sofa{width:220px;height:110px;background:#a888cc;border-radius:30px;margin:40px auto;position:relative;}
 .bed{width:260px;height:130px;background:#88bbee;border-radius:20px;margin:30px auto;position:relative;}
 .restChar{width:40px;height:48px;position:absolute;background:#ffc9d3;border-radius:50%;}
-
-/* 餐厅聊天房 */
 #chatPage{background:#ffeedd;text-align:center;padding-top:80px;}
 .cafeTable{width:160px;height:90px;background:#bb8855;border-radius:12px;margin:20px auto;display:inline-block;}
 .foodItem{padding:8px 16px;background:#ffd899;border-radius:8px;margin:8px;display:inline-block;cursor:pointer;}
-
-/* 商城排行 */
 #shopPage{background:#fff8e5;text-align:center;padding-top:80px;}
 .cloth-item{padding:15px 20px;margin:10px;background:#ffe8b0;border-radius:10px;display:inline-block;cursor:pointer;}
 #rankPage{background:#fff0f0;text-align:center;padding-top:80px;}
 .rank-box{max-width:380px;margin:20px auto;background:#fff;padding:20px;border-radius:16px;}
 
-/* ========== 私人房间【可真实装修+家具显示】 ========== */
-#privatePage{background:#eef0ff;text-align:center;padding-top:80px;}
-.decoBtn{padding:10px 18px;margin:8px;background:#bbaaff;border:none;border-radius:8px;cursor:pointer;}
-.furnitureArea{width:80%;height:300px;border:2px dashed #aaa;margin:30px auto;position:relative;background:#f8f9ff;border-radius:16px;}
-.furn{position:absolute;width:60px;height:40px;border-radius:8px;}
-.deskFurn{background:#b98c60;}
-.lampFurn{background:#ffdd77;}
-.rugFurn{width:120px;height:80px;background:#ccbbee;border-radius:20px;}
+/* ========== 超强个性化私人房间样式 ========== */
+#privatePage{text-align:center;padding-top:70px;}
+.room-name-box{margin:10px 0;}
+#roomNameInput{padding:8px;border-radius:8px;border:1px solid #ccc;width:220px;}
+.save-name-btn{padding:8px 14px;background:#9966ff;color:white;border:none;border-radius:8px;cursor:pointer;margin-left:6px;}
+.theme-buttons{margin:15px 0;}
+.theme-btn{padding:8px 12px;margin:4px;border:none;border-radius:6px;color:white;cursor:pointer;}
+.t1{background:#ffb8d0;}
+.t2{background:#88bbee;}
+.t3{background:#ffddaa;}
+.t4{background:#444466;}
+.furniture-bar{margin:15px 0;}
+.furn-btn{padding:8px 10px;margin:3px;background:#ddd;border:none;border-radius:6px;cursor:pointer;}
+/* 装修区域可拖拽 */
+.private-room-area{width:85%;height:320px;margin:20px auto;border-radius:16px;position:relative;overflow:hidden;border:2px solid #ccc;}
+/* 所有家具样式 */
+.furn{position:absolute;border-radius:8px;cursor:move;user-select:none;}
+.f-desk{width:70px;height:45px;background:#b98c60;}
+.f-lamp{width:35px;height:50px;background:#ffdd77;}
+.f-rug{width:130px;height:80px;background:#ccbbee;border-radius:20px;}
+.f-smallbed{width:90px;height:55px;background:#a8c8ff;}
+.f-sofa{width:80px;height:50px;background:#99cc99;}
+.f-book{width:60px;height:65px;background:#ee99aa;}
+.f-plant{width:45px;height:55px;background:#77bb77;border-radius:50%;}
+.f-doll{width:40px;height:45px;background:#ffb8c8;border-radius:50%;}
 </style>
 </head>
 <body>
+<button class="refresh-btn" onclick="location.reload()">🔄 刷新</button>
 
-<button class="refresh-btn" onclick="location.reload()">🔄 刷新页面</button>
-
+<!-- 人物 -->
 <div class="myAvatarBox">
 <div class="baseAvatar">
   <div class="avaHair"></div>
-  <div class="avaHead">
-    <div class="eyeL"></div><div class="eyeR"></div>
-    <div class="blushL"></div><div class="blushR"></div>
-  </div>
+  <div class="avaHead"><div class="eyeL"></div><div class="eyeR"></div><div class="blushL"></div><div class="blushR"></div></div>
   <div class="avaBodyBase"></div>
   <div class="clothLayer cloth0" id="nowCloth"></div>
 </div>
 </div>
 
-<div class="top-bar">
-<button class="back-btn" onclick="goMap()">返回地图</button>
-&nbsp;&nbsp;💰金币：<span id="coinNum">0</span>
-</div>
+<div class="top-bar"><button class="back-btn" onclick="goMap()">返回地图</button>&nbsp;&nbsp;💰金币：<span id="coinNum">0</span></div>
 
+<!-- 地图 -->
 <div id="mapPage" class="page active">
 <h1 class="map-title">🌍 Funstudying 欢乐大世界</h1>
-<div class="building" onclick="goPage('studyPage')">
-  <div class="lib"><div class="lib-roof"></div><div class="lib-body"></div><div class="lib-sign">📖 图书馆自习室</div></div>
-</div>
-<div class="building" onclick="goPage('restPage')">
-  <div class="hotel"><div class="hotel-roof"></div><div class="hotel-body"></div><div class="hotel-sign">🛏 休息大酒店</div></div>
-</div>
-<div class="building" onclick="goPage('chatPage')">
-  <div class="restau"><div class="restau-roof"></div><div class="restau-body"></div><div class="restau-sign">🍽 高级聊天餐厅</div></div>
-</div><br>
-<div class="building" onclick="goPage('shopPage')">
-  <div class="shop-build"><div class="shop-body"></div><div class="shop-sign">👗 精致服装店</div></div>
-</div>
-<div class="building" onclick="goPage('rankPage');showRank();">
-  <div class="rank-tower"><div class="tower-body"></div><div class="rank-sign">🏆 排行榜高塔</div></div>
-</div>
-<div class="building" onclick="openPrivateCheck()">
-  <div class="private-house"><div class="house-body"></div><div class="house-sign">🏠 私人专属小屋</div></div>
-</div>
+<div class="building" onclick="goPage('studyPage')"><div class="lib"><div class="lib-roof"></div><div class="lib-body"></div><div class="lib-sign">📖图书馆自习室</div></div></div>
+<div class="building" onclick="goPage('restPage')"><div class="hotel"><div class="hotel-roof"></div><div class="hotel-body"></div><div class="hotel-sign">🛏休息大酒店</div></div></div>
+<div class="building" onclick="goPage('chatPage')"><div class="restau"><div class="restau-roof"></div><div class="restau-body"></div><div class="restau-sign">🍽高级聊天餐厅</div></div></div><br>
+<div class="building" onclick="goPage('shopPage')"><div class="shop-build"><div class="shop-body"></div><div class="shop-sign">👗精致服装店</div></div></div>
+<div class="building" onclick="goPage('rankPage');showRank();"><div class="rank-tower"><div class="tower-body"></div><div class="rank-sign">🏆排行榜高塔</div></div></div>
+<div class="building" onclick="openPrivateCheck()"><div class="private-house"><div class="house-body"></div><div class="house-sign">🏠私人小屋</div></div></div>
 </div>
 
-<!-- 图书馆修复完整版 -->
+<!-- 学习房 -->
 <div id="studyPage" class="page">
-<div class="classroomBg">
-<div class="blackboard">今日专心读书</div>
-<div class="deskRow">
-<div class="desk" onclick="sitDesk(this)"><div class="seatAvatar"></div></div>
-<div class="desk" onclick="sitDesk(this)"><div class="seatAvatar"></div></div>
-<div class="desk" onclick="sitDesk(this)"><div class="seatAvatar"></div></div>
+<div class="classroomBg"><div class="blackboard">今日专心读书</div>
+<div class="deskRow"><div class="desk" onclick="sitDesk(this)"><div class="seatAvatar"></div></div><div class="desk" onclick="sitDesk(this)"><div class="seatAvatar"></div></div><div class="desk" onclick="sitDesk(this)"><div class="seatAvatar"></div></div></div>
+<div class="deskRow"><div class="desk" onclick="sitDesk(this)"><div class="seatAvatar"></div></div><div class="desk" onclick="sitDesk(this)"><div class="seatAvatar"></div></div><div class="desk" onclick="sitDesk(this)"><div class="seatAvatar"></div></div></div>
 </div>
-<div class="deskRow">
-<div class="desk" onclick="sitDesk(this)"><div class="seatAvatar"></div></div>
-<div class="desk" onclick="sitDesk(this)"><div class="seatAvatar"></div></div>
-<div class="desk" onclick="sitDesk(this)"><div class="seatAvatar"></div></div>
-</div>
-</div>
-<div class="timer-wrap">
-<div class="timer-box" id="timer">25:00</div>
-<button onclick="startTimer()">开始专注</button>
-<button onclick="pauseTimer()">暂停</button>
-<button id="rewardBtn" disabled onclick="endStudy()">学习完成 +50金币</button>
+<div class="timer-wrap"><div class="timer-box" id="timer">25:00</div>
+<button onclick="startTimer()">开始专注</button><button onclick="pauseTimer()">暂停</button><button id="rewardBtn" disabled onclick="endStudy()">学习完成 +50金币</button>
 </div>
 </div>
 
-<div id="restPage" class="page">
-<h1>🛏 休息大酒店</h1>
-<div class="sofa"><div class="restChar" style="top:30px;left:90px;"></div></div>
-<div class="bed"><div class="restChar" style="top:40px;left:110px;"></div></div>
-<p>放松休息，舒缓眼睛～</p>
-</div>
+<div id="restPage" class="page"><h1>🛏休息大酒店</h1><div class="sofa"><div class="restChar" style="top:30px;left:90px;"></div></div><div class="bed"><div class="restChar" style="top:40px;left:110px;"></div></div></div>
+<div id="chatPage" class="page"><h1>🍽高级聊天餐厅</h1><div class="cafeTable"></div><div class="cafeTable"></div><br><div class="foodItem" onclick="buyFood(20)">奶茶20</div><div class="foodItem" onclick="buyFood(30)">蛋糕30</div><textarea style="width:70%;height:150px;margin-top:20px;"></textarea></div>
+<div id="shopPage" class="page"><h1>👗精致服装店</h1><div class="cloth-item" onclick="buyCloth(100,1)">粉白校服100</div><div class="cloth-item" onclick="buyCloth(150,2)">蓝白运动150</div><div class="cloth-item" onclick="buyCloth(200,3)">奶油洋装200</div></div>
+<div id="rankPage" class="page"><h1>🏆排行榜高塔</h1><div class="rank-box" id="rankList"></div><input id="userName" placeholder="昵称"><button onclick="saveMyName()">保存</button></div>
 
-<div id="chatPage" class="page">
-<h1>🍽 高级聊天餐厅</h1>
-<div class="cafeTable"></div><div class="cafeTable"></div><br>
-<div class="foodItem" onclick="buyFood(20)">奶茶 20金币</div>
-<div class="foodItem" onclick="buyFood(30)">蛋糕 30金币</div>
-<textarea style="width:70%;height:150px;margin-top:20px;" placeholder="和朋友聊天放松～"></textarea>
-</div>
-
-<div id="shopPage" class="page">
-<h1>👗 精致高级服装店</h1>
-<div class="cloth-item" onclick="buyCloth(100,1)">精致粉白校服 100</div>
-<div class="cloth-item" onclick="buyCloth(150,2)">清爽蓝白运动服 150</div>
-<div class="cloth-item" onclick="buyCloth(200,3)">温柔奶油洋装 200</div>
-<p style="margin-top:20px;">衣服质感升级，绝不遮脸！</p>
-</div>
-
-<div id="rankPage" class="page">
-<h1>🏆 金币排行榜高塔</h1>
-<div class="rank-box" id="rankList"></div>
-<input id="userName" placeholder="输入昵称">
-<button onclick="saveMyName()">保存昵称</button>
-</div>
-
-<!-- 私人房间【可真实装修】 -->
+<!-- 超强个性化私人房间 -->
 <div id="privatePage" class="page">
-<h1>🏠 我的可装修私人小屋</h1>
-<p>点击按钮 → 下方区域自动摆放家具</p>
-<button class="decoBtn" onclick="addDesk()">摆放书桌</button>
-<button class="decoBtn" onclick="addLamp()">摆放台灯</button>
-<button class="decoBtn" onclick="addRug()">摆放地毯</button>
-<div class="furnitureArea" id="roomArea"></div>
+<h1>🏠 <span id="showRoomName">我的私人小屋</span></h1>
+<div class="room-name-box">
+<input id="roomNameInput" placeholder="输入房间专属名字">
+<button class="save-name-btn" onclick="saveRoomName()">修改房间名</button>
+</div>
+<div class="theme-buttons">
+<button class="theme-btn t1" onclick="setTheme('pink')">少女粉房间</button>
+<button class="theme-btn t2" onclick="setTheme('blue')">学霸蓝房间</button>
+<button class="theme-btn t3" onclick="setTheme('warm')">暖居家房间</button>
+<button class="theme-btn t4" onclick="setTheme('star')">星空夜景房</button>
+</div>
+<div class="furniture-bar">
+<button class="furn-btn" onclick="addFurn('f-desk')">书桌</button>
+<button class="furn-btn" onclick="addFurn('f-lamp')">台灯</button>
+<button class="furn-btn" onclick="addFurn('f-rug')">地毯</button>
+<button class="furn-btn" onclick="addFurn('f-smallbed')">小床</button>
+<button class="furn-btn" onclick="addFurn('f-sofa')">懒人沙发</button>
+<button class="furn-btn" onclick="addFurn('f-book')">书架</button>
+<button class="furn-btn" onclick="addFurn('f-plant')">绿植</button>
+<button class="furn-btn" onclick="addFurn('f-doll')">玩偶</button>
+<button class="furn-btn" style="background:#f88;color:white" onclick="clearAllFurn()">清空装修</button>
+</div>
+<div class="private-room-area" id="roomArea"></div>
 </div>
 
 <script>
-let coins = parseInt(localStorage.getItem("myCoin"))||0;
-let clothId = parseInt(localStorage.getItem("myCloth"))||0;
-let userName = localStorage.getItem("userName")||"同学";
-let hasPrivate = localStorage.getItem("hasPrivate")==="1";
+let coins=parseInt(localStorage.getItem("myCoin"))||0;
+let clothId=parseInt(localStorage.getItem("myCloth"))||0;
+let userName=localStorage.getItem("userName")||"同学";
+let hasPrivate=localStorage.getItem("hasPrivate")==="1";
 
 document.getElementById("coinNum").innerText=coins;
 document.getElementById("nowCloth").className="clothLayer cloth"+clothId;
 
 function goPage(id){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));document.getElementById(id).classList.add("active");}
 function goMap(){goPage("mapPage");}
+function sitDesk(d){let a=d.querySelector(".seatAvatar");a.style.display="block";}
 
-// 座位入座修复
-function sitDesk(d){
-  let a = d.querySelector(".seatAvatar");
-  a.style.display="block";
-}
-
-// 计时器完整修复
-let totalTime = 1500;
-let time = totalTime;
-let run = false;
-let timer;
-const rewardBtn = document.getElementById("rewardBtn");
-rewardBtn.disabled = true;
-
-function updateT(){
-  let m = Math.floor(time/60);
-  let s = time % 60;
-  document.getElementById("timer").innerText = (m<10?"0"+m:m)+":"+(s<10?"0"+s:s);
-}
-function startTimer(){
-  if(run)return;run=true;
-  timer = setInterval(()=>{
-    if(time>0){
-      time--;updateT();
-      if(time<=0){clearInterval(timer);run=false;rewardBtn.disabled=false;}
-    }
-  },1000);
-}
+//计时器修复
+let totalTime=1500,time=totalTime,run=false,timer;
+const rewardBtn=document.getElementById("rewardBtn");rewardBtn.disabled=true;
+function updateT(){let m=Math.floor(time/60),s=time%60;document.getElementById("timer").innerText=(m<10?"0"+m:m)+":"+(s<10?"0"+s:s);}
+function startTimer(){if(run)return;run=1;timer=setInterval(()=>{if(time>0){time--;updateT();if(time<=0){clearInterval(timer);run=false;rewardBtn.disabled=false;}}},1000);}
 function pauseTimer(){run=false;clearInterval(timer);}
-function endStudy(){
-  if(time>0){alert("必须学完25分钟！");return;}
-  coins +=50;localStorage.setItem("myCoin",coins);
-  document.getElementById("coinNum").innerText=coins;
-  saveRank();alert("学习完成+50金币！");
-  time=totalTime;updateT();rewardBtn.disabled=true;
-}
+function endStudy(){if(time>0){alert("必须学完25分钟！");return;}coins+=50;localStorage.setItem("myCoin",coins);document.getElementById("coinNum").innerText=coins;saveRank();alert("+50金币");time=totalTime;updateT();rewardBtn.disabled=true;}
 
-function buyCloth(p,cid){
-  if(coins>=p){
-    coins-=p;clothId=cid;
-    localStorage.setItem("myCoin",coins);localStorage.setItem("myCloth",clothId);
-    document.getElementById("coinNum").innerText=coins;
-    document.getElementById("nowCloth").className="clothLayer cloth"+cid;
-    alert("换装成功，精致新衣上身！");
-  }else alert("金币不足");
-}
-function buyFood(p){
-  if(coins>=p){coins-=p;localStorage.setItem("myCoin",coins);document.getElementById("coinNum").innerText=coins;alert("购买成功！");}
-  else alert("金币不够");
-}
-function openPrivateCheck(){
-  if(hasPrivate){goPage("privatePage");}
-  else{
-    if(coins>=300){
-      coins-=300;localStorage.setItem("myCoin",coins);
-      hasPrivate=true;localStorage.setItem("hasPrivate","1");
-      document.getElementById("coinNum").innerText=coins;
-      alert("开通私人小屋成功！");goPage("privatePage");
-    }else alert("需要300金币开通私人房间");
-  }
-}
+function buyCloth(p,cid){if(coins>=p){coins-=p;clothId=cid;localStorage.setItem("myCoin",coins);localStorage.setItem("myCloth",clothId);document.getElementById("coinNum").innerText=coins;document.getElementById("nowCloth").className="clothLayer cloth"+cid;alert("换装成功");}else alert("金币不足");}
+function buyFood(p){if(coins>=p){coins-=p;localStorage.setItem("myCoin",coins);document.getElementById("coinNum").innerText=coins;alert("购买成功");}}
+function openPrivateCheck(){if(hasPrivate){goPage("privatePage");loadRoomData();}else{if(coins>=300){coins-=300;localStorage.setItem("myCoin",coins);hasPrivate=true;localStorage.setItem("hasPrivate","1");document.getElementById("coinNum").innerText=coins;alert("开通成功");goPage("privatePage");}}}
 
-// 私人房间装修功能【真实摆放家具】
-function addDesk(){
-  let d = document.createElement("div");
-  d.className="furn deskFurn";
-  d.style.left = (Math.random()*220+30)+"px";
-  d.style.top = (Math.random()*180+30)+"px";
-  document.getElementById("roomArea").appendChild(d);
-}
-function addLamp(){
-  let l = document.createElement("div");
-  l.className="furn lampFurn";
-  l.style.left = (Math.random()*220+30)+"px";
-  l.style.top = (Math.random()*180+30)+"px";
-  document.getElementById("roomArea").appendChild(l);
-}
-function addRug(){
-  let r = document.createElement("div");
-  r.className="furn rugFurn";
-  r.style.left = (Math.random()*180+20)+"px";
-  r.style.top = (Math.random()*150+20)+"px";
-  document.getElementById("roomArea").appendChild(r);
-}
+//排行昵称
+function saveMyName(){let n=document.getElementById("userName").value.trim();if(n){userName=n;localStorage.setItem("userName",n);}}
+function saveRank(){let r=JSON.parse(localStorage.getItem("rankData")||"[]");let f=r.find(x=>x.name===userName);f?f.coins=coins:r.push({name:userName,coins:coins});r.sort((a,b)=>b.coins-a.coins);localStorage.setItem("rankData",JSON.stringify(r));}
+function showRank(){let r=JSON.parse(localStorage.getItem("rankData")||"[]");let box=document.getElementById("rankList");box.innerHTML="";r.slice(0,10).forEach((it,i)=>box.innerHTML+=`<div>${i+1}.${it.name} ${it.coins}金币</div>`);}
 
-function saveMyName(){let n=document.getElementById("userName").value.trim();if(n){userName=n;localStorage.setItem("userName",n);alert("昵称保存成功");}}
-function saveRank(){
-  let r=JSON.parse(localStorage.getItem("rankData")||"[]");
-  let f=r.find(x=>x.name===userName);
-  f?f.coins=coins:r.push({name:userName,coins:coins});
-  r.sort((a,b)=>b.coins-a.coins);
-  localStorage.setItem("rankData",JSON.stringify(r));
+//====私人房间个性化核心====
+let dragEl=null;let roomArea=document.getElementById("roomArea");
+//房间名
+function saveRoomName(){let n=document.getElementById("roomNameInput").value.trim();if(!n)return;localStorage.setItem("myRoomName",n);document.getElementById("showRoomName").innerText=n;}
+//主题
+function setTheme(type){
+if(type==="pink")roomArea.style.background="#ffe8f2";
+if(type==="blue")roomArea.style.background="#e8f2ff";
+if(type==="warm")roomArea.style.background="#fff3e0";
+if(type==="star")roomArea.style.background="#222244";
+localStorage.setItem("roomTheme",type);
 }
-function showRank(){
-  let r=JSON.parse(localStorage.getItem("rankData")||"[]");
-  let box=document.getElementById("rankList");box.innerHTML="";
-  r.slice(0,10).forEach((it,i)=>box.innerHTML+=`<div>${i+1}.${it.name} - ${it.coins}金币</div>`);
+//添加家具
+function addFurn(cls){
+let d=document.createElement("div");d.className="furn "+cls;
+d.style.left="60px";d.style.top="60px";
+roomArea.appendChild(d);bindDrag(d);saveRoomLayout();
 }
-
-updateT();
+function clearAllFurn(){roomArea.innerHTML="";localStorage.removeItem("roomFurn");}
+//拖拽绑定
+function bindDrag(el){
+el.onmousedown=e=>{dragEl=el;let ox=e.offsetX,oy=e.offsetY;
+document.onmousemove=ev=>{if(!dragEl)return;
+let x=ev.clientX-roomArea.getBoundingClientRect().left-ox;
+let y=ev.clientY-roomArea.getBoundingClientRect().top-oy;
+if(x>0&&y>0)dragEl.style.left=x+"px",dragEl.style.top=y+"px";
+};
+document.onmouseup=()=>{dragEl=null;document.onmousemove=null;saveRoomLayout();};
+}
+}
+//保存&加载布局
+function saveRoomLayout(){let arr=[];roomArea.querySelectorAll(".furn").forEach(f=>{arr.push({cls:f.className,l:f.style.left,t:f.style.top});});localStorage.setItem("roomFurn",JSON.stringify(arr));}
+function loadRoomData(){
+let rn=localStorage.getItem("myRoomName")||"我的私人小屋";
+document.getElementById("showRoomName").innerText=rn;
+let th=localStorage.getItem("roomTheme")||"warm";setTheme(th);
+let data=JSON.parse(localStorage.getItem("roomFurn")||"[]");
+data.forEach(item=>{let d=document.createElement("div");d.className=item.cls;d.style.left=item.l;d.style.top=item.t;roomArea.appendChild(d);bindDrag(d);});
+}
+window.onload=()=>{updateT();if(hasPrivate)loadRoomData();}
 </script>
-
 </body>
 </html>
